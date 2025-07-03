@@ -27,7 +27,7 @@ namespace productservice.Authentication
             var encodedCredentials = authHeader.Parameter;
             var decodedCredentials = Encoding.UTF8.GetString(Convert.FromBase64String(encodedCredentials));
             var userNameAndPassword = decodedCredentials.Split(':');
-            if (userNameAndPassword[0] != "amr" || userNameAndPassword[1] != "password")
+            if (userNameAndPassword[0] != "admin" || userNameAndPassword[1] != "password")
             {
                 return Task.FromResult(AuthenticateResult.Fail("Invalid username or password"));
             }
