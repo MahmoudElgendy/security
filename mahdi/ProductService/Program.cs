@@ -15,8 +15,12 @@ builder.Services.AddSwaggerGen();
 
 var jwtOptions = builder.Configuration.GetSection("Jwt").Get<JwtOptions>();
 builder.Services.AddSingleton(jwtOptions);
-builder.Services.AddAuthentication()
-    //.AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", options => { });
+builder.Services.AddAuthentication(options =>
+     {
+         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // "Bearer"
+     }
+     )
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", options => { })
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
     {
         options.SaveToken = true;

@@ -10,8 +10,17 @@ namespace productservice.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        [Authorize]
+        //[Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public ActionResult<IEnumerable<productservice.Models.Product>> GetProducts()
+        {
+            return Ok(GetProductsList());
+        }
+
+        [HttpGet("{id}")]
+        //[Authorize]
+        [Authorize(AuthenticationSchemes = "Basic")]
+        public ActionResult<IEnumerable<productservice.Models.Product>> GetProduct()
         {
             return Ok(GetProductsList());
         }
