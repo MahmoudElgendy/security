@@ -11,7 +11,9 @@ namespace productservice.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        [CheckPermission(Permissions.ReadProducts)]
+        //[CheckPermission(Permissions.ReadProducts)]
+        //[Authorize(Roles ="admin")]
+        [Authorize(Policy = "onlyAdmin")]
         public ActionResult<IEnumerable<productservice.Models.Product>> GetProducts()
         {
             return Ok(GetProductsList());

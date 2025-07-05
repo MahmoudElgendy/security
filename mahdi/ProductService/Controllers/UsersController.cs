@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using productservice.Authentication;
-using productservice.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -33,7 +30,8 @@ namespace productservice.Controllers
                 {
                     new Claim(ClaimTypes.NameIdentifier, request.UserName),
                     new Claim(ClaimTypes.Email, "m@gamil.com"),
-                     new Claim("Department", "IT") // better to replace magic string Department with enum
+                     new Claim("Department", "IT"), // better to replace magic string Department with enum,
+                     new Claim(ClaimTypes.Role, "amin") // better to replace magic string Role with enum
                 }),
 
 

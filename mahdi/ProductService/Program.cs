@@ -32,6 +32,14 @@ builder.Services.AddAuthentication()
         };
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("onlyAdmin", builder =>
+    {
+        builder.RequireRole("amin");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
