@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using productservice.Authorization;
 using productservice.Models;
 using System.Security.Claims;
 
@@ -10,7 +11,7 @@ namespace productservice.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        [Authorize]
+        [CheckPermission(Permissions.ReadProducts)]
         public ActionResult<IEnumerable<productservice.Models.Product>> GetProducts()
         {
             return Ok(GetProductsList());
